@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Hi! I'm Zihan Lin, an Master in Biostatistics student at Columbia University. 
 This is my personal website where I would like to share my academic and professional experiences.
 
+<img src="/Users/suwa/Desktop/p8105_website_zl3543/giphy.webp" width="400"/>
 
 
 Feel free to browse around!
