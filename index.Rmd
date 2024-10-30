@@ -1,0 +1,19 @@
+---
+title: "p8105_hw4_zl3543"
+author: "Zihan Lin"
+date: "2024-10-28"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Welcome to My Website!
+
+Hi! I'm Zihan Lin, an Master in Biostatistics student at Columbia University. 
+This is my personal website where I would like to share my academic and professional experiences.
+
+
+
+Feel free to browse around!

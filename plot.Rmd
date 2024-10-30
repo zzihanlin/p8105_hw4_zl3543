@@ -1,0 +1,59 @@
+---
+title: "Data Visualization Dashboard"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(flexdashboard)
+library(plotly)
+library(tidyverse)
+
+# Load the dataset
+ny_data <- read.csv("/Users/suwa/Desktop/p8105_website_zl3543/ny_noaa.csv")
+```
+
+Column {data-width=650 .tabset}
+-----------------------------------------------------------------------
+
+### Chart A
+```{r}
+# Filter out rows with missing values in tmax or tmin, then sample 100 observations
+scatter_data <- ny_data %>%
+  filter(!is.na(tmax) & !is.na(tmin)) %>%
+  sample_n(100)
+
+# Create the scatter plot
+p1 <- plot_ly(scatter_data, x = ~tmax, y = ~tmin, type = 'scatter', mode = 'markers') %>%
+  layout(title = "Scatterplot of Maximum vs Minimum Temperature",
+         xaxis = list(title = "Max Temperature (tmax)"),
+         yaxis = list(title = "Min Temperature (tmin)"))
+p1
+```
+
+### Chart B
+```{r}
+# Sample data to make the plot manageable
+line_data <- ny_data %>% arrange(date)
+
+p2 <- plot_ly(line_data, x = ~date, y = ~prcp, type = 'scatter', mode = 'lines') %>%
+  layout(title = "Daily Precipitation Over Time",
+         xaxis = list(title = "Date"),
+         yaxis = list(title = "Precipitation (prcp)"))
+p2
+```
+
+### Chart C
+```{r}
+ny_data <- ny_data %>%
+  mutate(month = lubridate::month(date, label = TRUE)) 
+
+ny_data <- ny_data %>%
+  filter(!is.na(tmax), !is.na(month))
+
+p3 <- plot_ly(ny_data, x = ~month, y = ~tmax, type = 'box') %>%
+  layout(title = "Monthly Distribution of Max Temperature",
+         xaxis = list(title = "Month"),
+         yaxis = list(title = "Max Temperature (tmax)"))
+p3
+```
